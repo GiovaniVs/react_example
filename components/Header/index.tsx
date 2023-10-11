@@ -1,18 +1,25 @@
-import Link from 'next/link'
-import React from 'react'
+// Header.tsx
+import Head from 'next/head';
+import Link from 'next/link';
+import { Routes } from '@/utils/constants'; 
 
 const Header = () => {
   return (
-    <div className='w-full flex flex-row justify-between p-6 bg-blue-500 text-white'>
-      <Link href={'/'} className='text-xl font-bold'>React example</Link>
-      <div className='flex flex-row gap-4'>
-        <Link href={'/'}>Inicio</Link>
-        <Link href={'/examples'}>Ejemplos</Link>
+    <>
+      <Head>
+        <meta name="description" content="" />  
+      </Head>
+      
+      <div className='w-full flex flex-row justify-between p-6 bg-blue-500 text-white'>
+        <Link href={Routes.ReactExample} className='text-xl font-bold'>React example</Link>
+        <div className='flex flex-row gap-4'>
+          <Link href={Routes.Inicio}>Inicio</Link>
+          <Link href={Routes.Ejemplos}>Ejemplos</Link>
+          <Link href={Routes.vs21025}>vs21025</Link>
+        </div>
       </div>
-    </div>
-  )
-}
+    </>
+  );
+};
 
-export default Header
-
-
+export default Header;

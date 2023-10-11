@@ -2,12 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  input, textarea {
-    @apply border border-gray-300 rounded-md p-1;
+@layer base 
+{
+  input, textarea 
+  {
+    @apply border border-blue-500 rounded-md p-1;
   }
 
   button {
-    @apply bg-blue-500 px-2 py-1 rounded-md text-white;
+    @apply bg-red-500 px-2 py-1 rounded-md text-white;
   }
+}
+
+h1 {
+  @apply text-2xl;
+}
+
+h2 {
+  @apply text-xl;
+}
+
+h3 {
+  @apply text-lg;
+}
+
+h4 {
+  @apply text-base;
+}
+
+h5 {
+  @apply text-sm;
 }

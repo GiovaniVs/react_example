@@ -1,13 +1,24 @@
+
 'use client';
 import React, { ChangeEvent, useState } from 'react'
 
 type TRoles = 'Client' | 'Admin';
+
+interface IUser
+{
+  id:number; 
+  firstName: string; 
+  lastName: string; 
+  picture?: string; 
+  role: 'Client' | 'Admin';
+}
 
 const Example2 = () => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [role, setRole] = useState<TRoles>('Client')
   const [terms, setTerms] = useState(false)
+  const [users, setUsers] = useState<IUser[]>([]);
 
   const handleNameOnChange = (event:ChangeEvent<HTMLInputElement>) => {
     setFirstName(event.currentTarget.value)
@@ -15,17 +26,17 @@ const Example2 = () => {
 
   const handleLastNameOnChange = (event:ChangeEvent<HTMLInputElement>) => {
     setLastName(event.currentTarget.value)
-  }
+  };
 
   const handleRoleOnChange = (event:ChangeEvent<HTMLSelectElement>) => {
     if(event.currentTarget.value === 'Client' || event.currentTarget.value === 'Admin'){
       setRole(event.currentTarget.value)
     }
-  }
+  };
 
   const handleTermsOnChange = (event:ChangeEvent<HTMLInputElement>) => {
     setTerms(event.currentTarget.checked)
-  }
+  };
 
   const handleGuardarOnClick = () => {
     console.log('--------------')
@@ -34,6 +45,15 @@ const Example2 = () => {
     console.log('Rol:', role)
     console.log(terms ? 'Acepto los terminos'  : 'No acepto los terminos')
     console.log('--------------')
+
+    const newUser: IUser =
+    {
+      id: Date.now(),
+      firstName,
+      lastName,
+      role, 
+    };
+    setUsers([...users, newUser]);
   }
 
   return (
@@ -59,6 +79,13 @@ const Example2 = () => {
         <input onChange={handleTermsOnChange} id='terms' type="checkbox" checked={terms}/>
       </div>
       <button onClick={handleGuardarOnClick}>Guardar</button>
+     
+      <h2 className='text-2xl font-bold mt-4'>Lista de Usuarios</h2>
+      <ul>
+        {users.map(user => (
+          <li key={user.id}>{user.firstName} {user.lastName} - {user.role}</li>
+        ))}
+      </ul>
     </div>
   )
 }
